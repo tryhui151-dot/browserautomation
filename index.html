@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrowserAutomation.online — Cloud Headless Browsers for AI Agents & Scrapers</title>
+  <meta name="description" content="Deploy stealth headless browsers in milliseconds. Native WebSocket support for Playwright, Puppeteer, Selenium, and AI Browser Agents with built-in anti-bot evasion." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #07090e;
+      color: #f8fafc;
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+    .glow {
+      background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18), transparent 65%);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#07090e]/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-indigo-600 flex items-center justify-center font-mono font-bold text-sm text-white shadow-lg shadow-brand-500/20">
+          &gt;_
+        </div>
+        <span class="font-bold tracking-tight text-lg text-white">browserautomation<span class="text-brand-400">.online</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300 font-medium">
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#quickstart" class="hover:text-white transition">Quickstart</a>
+        <a href="#infrastructure" class="hover:text-white transition">Stealth Engine</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="docs.html" class="hover:text-white transition">Docs</a>
+        <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="docs.html" class="md:hidden text-xs text-slate-300 hover:text-white px-2 py-1">Docs</a>
+        <a href="#get-key" class="hidden sm:inline-block text-sm text-slate-300 hover:text-white px-3 py-1.5 transition">Sign In</a>
+        <a href="#get-key" class="text-sm font-semibold bg-brand-500 hover:bg-brand-400 text-slate-950 px-4 py-2 rounded-lg transition shadow-lg shadow-brand-500/20">
+          Get API Key
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden grid-bg glow pt-20 pb-28 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          v2.4 Engine Live — Native MCP Server &amp; Stealth TLS Fingerprinting
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.12] text-white mb-6">
+          Headless Browser Fleet for <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-indigo-400">AI Agents &amp; Scrapers</span>
+        </h1>
+
+        <p class="text-lg text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+          Spin up thousands of isolated, anti-detect Chromium &amp; WebKit instances in under 150ms. Connect your existing Playwright, Puppeteer, or AI agent workflows with a single line of code.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#get-key" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold text-sm transition shadow-xl shadow-brand-500/20">
+            Start Free (1,000 Browser Mins)
+          </a>
+          <a href="docs.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm font-mono transition">
+            Read API Documentation →
+          </a>
+        </div>
+      </div>
+
+      <!-- Interactive Code Terminal -->
+      <div id="quickstart" class="mt-16 max-w-4xl mx-auto">
+        <div class="rounded-2xl border border-white/15 bg-[#0c1017] shadow-2xl overflow-hidden">
+          <!-- Terminal Header & Tabs -->
+          <div class="flex flex-wrap items-center justify-between px-4 py-3 bg-white/[0.03] border-b border-white/10 gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              <span class="ml-2 text-xs text-slate-400 font-mono">connect-session</span>
+            </div>
+
+            <div class="flex items-center gap-1 bg-black/40 p-1 rounded-lg border border-white/10 text-xs font-mono">
+              <button onclick="switchTab('playwright')" id="tab-playwright" class="px-3 py-1 rounded-md bg-brand-500 text-slate-950 font-semibold transition">Playwright (Node)</button>
+              <button onclick="switchTab('java')" id="tab-java" class="px-3 py-1 rounded-md text-slate-400 hover:text-white transition">Java / Spring</button>
+              <button onclick="switchTab('puppeteer')" id="tab-puppeteer" class="px-3 py-1 rounded-md text-slate-400 hover:text-white transition">Puppeteer</button>
+            </div>
+          </div>
+
+          <!-- Code Blocks -->
+          <div class="p-6 font-mono text-sm overflow-x-auto leading-relaxed">
+            <pre id="code-playwright" class="text-slate-300"><code><span class="text-purple-400">import</span> { chromium } <span class="text-purple-400">from</span> <span class="text-emerald-400">'playwright'</span>;
+
+<span class="text-slate-500">// Connect to a stealth cloud session with automatic residential proxy rotation</span>
+<span class="text-purple-400">const</span> browser = <span class="text-purple-400">await</span> chromium.<span class="text-sky-400">connectOverCDP</span>(
+  <span class="text-emerald-400">'wss://connect.browserautomation.online?apiKey=ba_live_98a7f6...&amp;stealth=true&amp;proxy=res_us'</span>
+);
+
+<span class="text-purple-400">const</span> context = browser.<span class="text-sky-400">contexts</span>()[<span class="text-amber-400">0</span>];
+<span class="text-purple-400">const</span> page = <span class="text-purple-400">await</span> context.<span class="text-sky-400">newPage</span>();
+
+<span class="text-purple-400">await</span> page.<span class="text-sky-400">goto</span>(<span class="text-emerald-400">'https://target-site.com'</span>, { waitUntil: <span class="text-emerald-400">'networkidle'</span> });
+<span class="text-purple-400">const</span> data = <span class="text-purple-400">await</span> page.<span class="text-sky-400">locator</span>(<span class="text-emerald-400">'.pricing-table'</span>).<span class="text-sky-400">innerText</span>();
+
+<span class="text-purple-400">await</span> browser.<span class="text-sky-400">close</span>();</code></pre>
+
+            <pre id="code-java" class="text-slate-300 hidden"><code><span class="text-purple-400">import</span> com.microsoft.playwright.*;
+
+<span class="text-purple-400">public class</span> <span class="text-amber-300">CloudBrowserWorker</span> {
+    <span class="text-purple-400">public static void</span> <span class="text-sky-400">main</span>(String[] args) {
+        <span class="text-purple-400">try</span> (Playwright playwright = Playwright.<span class="text-sky-400">create</span>()) {
+            String wsEndpoint = <span class="text-emerald-400">"wss://connect.browserautomation.online?apiKey=ba_live_98a7f6...&amp;stealth=true"</span>;
+            Browser browser = playwright.chromium().<span class="text-sky-400">connectOverCDP</span>(wsEndpoint);
+
+            Page page = browser.<span class="text-sky-400">newPage</span>();
+            page.<span class="text-sky-400">navigate</span>(<span class="text-emerald-400">"https://target-site.com"</span>);
+            System.out.<span class="text-sky-400">println</span>(<span class="text-emerald-400">"Page Title: "</span> + page.<span class="text-sky-400">title</span>());
+
+            browser.<span class="text-sky-400">close</span>();
+        }
+    }
+}</code></pre>
+
+            <pre id="code-puppeteer" class="text-slate-300 hidden"><code><span class="text-purple-400">import</span> puppeteer <span class="text-purple-400">from</span> <span class="text-emerald-400">'puppeteer-core'</span>;
+
+<span class="text-purple-400">const</span> browser = <span class="text-purple-400">await</span> puppeteer.<span class="text-sky-400">connect</span>({
+  browserWSEndpoint: <span class="text-emerald-400">'wss://connect.browserautomation.online?apiKey=ba_live_98a7f6...&amp;solveCaptcha=true'</span>,
+});
+
+<span class="text-purple-400">const</span> page = <span class="text-purple-400">await</span> browser.<span class="text-sky-400">newPage</span>();
+<span class="text-purple-400">await</span> page.<span class="text-sky-400">goto</span>(<span class="text-emerald-400">'https://target-site.com'</span>);
+<span class="text-purple-400">await</span> page.<span class="text-sky-400">screenshot</span>({ path: <span class="text-emerald-400">'verified-bypass.png'</span> });
+
+<span class="text-purple-400">await</span> browser.<span class="text-sky-400">close</span>();</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metrics Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-14 pt-10 border-t border-white/10 text-center">
+        <div>
+          <div class="text-3xl font-extrabold text-white">&lt;140ms</div>
+          <div class="text-xs text-slate-400 mt-1">Cold Browser Boot Time</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-brand-400">99.4%</div>
+          <div class="text-xs text-slate-400 mt-1">Anti-Bot Bypass Success</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-white">195+</div>
+          <div class="text-xs text-slate-400 mt-1">Geo-Targeted Proxy Regions</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-white">99.99%</div>
+          <div class="text-xs text-slate-400 mt-1">WebSocket Uptime SLA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section id="features" class="py-24 max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl font-bold text-white mb-4">Engineered for High-Concurrency Workloads</h2>
+      <p class="text-slate-400 text-sm leading-relaxed">
+        Stop managing zombie Chromium processes, Docker OOM crashes, and IP bans. Offload browser execution to our globally distributed edge cluster.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">01</div>
+        <h3 class="text-lg font-semibold text-white mb-2">Zero-Config Stealth Fingerprinting</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Kernel-level patching of JA3/JA4 TLS signatures, WebGL hardware canvas noise, AudioContext, and navigator properties to pass Cloudflare Turnstile, DataDome, and Akamai checks.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">02</div>
+        <h3 class="text-lg font-semibold text-white mb-2">Persistent Session Vault</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Save and restore authenticated cookies, IndexedDB, and LocalStorage across agent runs using a single <code>sessionId</code> parameter—no repeated logins or 2FA prompts.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">03</div>
+        <h3 class="text-lg font-semibold text-white mb-2">AI Agent &amp; MCP Ready</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Plug directly into Claude Computer Use, Browser-Use, LangGraph, or our hosted Model Context Protocol (MCP) endpoint for autonomous multi-step web navigation.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">04</div>
+        <h3 class="text-lg font-semibold text-white mb-2">Built-In Residential Proxies</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Automatic sticky or rotating residential ISP IPs across 195 countries. Pass <code>?proxy=res_us</code> in your connection URL without configuring external proxy servers.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">05</div>
+        <h3 class="text-lg font-semibold text-white mb-2">Live Session Replay &amp; DevTools</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Every run automatically records DOM snapshots, HAR network waterfalls, console logs, and full MP4 video playback for effortless debugging.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-500/40 transition">
+        <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold mb-4">06</div>
+        <h3 class="text-lg font-semibold text-white mb-2">REST Extraction Endpoints</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Don't need a full WebSocket session? Call <code>/v1/extract</code>, <code>/v1/pdf</code>, or <code>/v1/screenshot</code> via synchronous REST API to get clean Markdown or JSON in one request.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Comparison Section -->
+  <section id="infrastructure" class="py-20 border-y border-white/10 bg-white/[0.01]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-brand-400 mb-2">Stealth Architecture</div>
+          <h2 class="text-3xl font-bold text-white mb-4">Why DIY Docker Containers Get Blocked</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Standard headless Chrome leaks dozens of automation signals (<code>navigator.webdriver</code>, datacenter ASN signatures, mismatched OS fonts, and synthetic mouse trajectories). Our custom browser runtime isolates and spoofs every hardware layer automatically.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-3">
+              <span class="text-emerald-400 font-bold">✓</span> Automatic CAPTCHA &amp; Turnstile token resolution
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-emerald-400 font-bold">✓</span> Human-like Bezier curve cursor &amp; keystroke cadence
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-emerald-400 font-bold">✓</span> Ephemeral microVM isolation per session (zero memory leaks)
+            </li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-[#0c1017] p-6 font-mono text-xs space-y-3">
+          <div class="text-slate-400 border-b border-white/10 pb-2">GET https://api.browserautomation.online/v1/diagnostics</div>
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-slate-400">TLS Fingerprint (JA4)</div>
+              <div class="text-emerald-400 font-semibold mt-1">PASS (Chrome 134 macOS)</div>
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-slate-400">WebGL Renderer</div>
+              <div class="text-emerald-400 font-semibold mt-1">PASS (Apple M3 Max GPU)</div>
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-slate-400">CDP Runtime Leak</div>
+              <div class="text-emerald-400 font-semibold mt-1">0 Signals Detected</div>
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-slate-400">IP Reputation</div>
+              <div class="text-emerald-400 font-semibold mt-1">Residential ISP (Clean)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl font-bold text-white mb-4">Simple, Usage-Based Pricing</h2>
+      <p class="text-slate-400 text-sm">Start building for free. Scale to thousands of concurrent browsers with zero DevOps overhead.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Developer Tier -->
+      <div class="p-8 rounded-2xl border border-white/10 bg-white/[0.02] flex flex-col justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-white">Developer</h3>
+          <p class="text-xs text-slate-400 mt-1">For solo builders &amp; prototyping</p>
+          <div class="my-6">
+            <span class="text-4xl font-extrabold text-white">$0</span>
+            <span class="text-slate-400 text-sm"> / month</span>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+            <li>• 1,000 free browser minutes / mo</li>
+            <li>• Up to 5 concurrent browsers</li>
+            <li>• Standard stealth fingerprinting</li>
+            <li>• 24-hour session log retention</li>
+          </ul>
+        </div>
+        <a href="#get-key" class="w-full py-2.5 rounded-lg border border-white/15 hover:bg-white/5 text-center text-sm font-medium text-white transition">Start Free</a>
+      </div>
+
+      <!-- Growth Tier -->
+      <div class="p-8 rounded-2xl border-2 border-brand-500 bg-brand-500/[0.04] flex flex-col justify-between relative">
+        <span class="absolute -top-3 right-6 bg-brand-500 text-slate-950 text-xs font-bold px-3 py-0.5 rounded-full">MOST POPULAR</span>
+        <div>
+          <h3 class="text-lg font-semibold text-white">Production</h3>
+          <p class="text-xs text-slate-400 mt-1">For AI agent startups &amp; data teams</p>
+          <div class="my-6">
+            <span class="text-4xl font-extrabold text-white">$49</span>
+            <span class="text-slate-400 text-sm"> / month</span>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+            <li>• 25,000 browser minutes included</li>
+            <li>• 50 concurrent browsers</li>
+            <li>• Built-in residential proxy pool (15 GB)</li>
+            <li>• Automatic CAPTCHA solving included</li>
+            <li>• Persistent Session Vault</li>
+          </ul>
+        </div>
+        <a href="#get-key" class="w-full py-2.5 rounded-lg bg-brand-500 hover:bg-brand-400 text-center text-sm font-semibold text-slate-950 transition">Deploy Production Fleet</a>
+      </div>
+
+      <!-- Scale Tier -->
+      <div class="p-8 rounded-2xl border border-white/10 bg-white/[0.02] flex flex-col justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-white">Enterprise</h3>
+          <p class="text-xs text-slate-400 mt-1">High-volume scraping &amp; custom SLAs</p>
+          <div class="my-6">
+            <span class="text-4xl font-extrabold text-white">$249</span>
+            <span class="text-slate-400 text-sm"> / month</span>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+            <li>• 150,000 browser minutes included</li>
+            <li>• 500+ concurrent browsers</li>
+            <li>• Dedicated ISP &amp; mobile proxies</li>
+            <li>• Custom VPC peering &amp; SOC2 compliance</li>
+            <li>• 24/7 Slack engineering support</li>
+          </ul>
+        </div>
+        <a href="mailto:founders@browserautomation.online" class="w-full py-2.5 rounded-lg border border-white/15 hover:bg-white/5 text-center text-sm font-medium text-white transition">Contact Engineering</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Key Provisioning / Lead Capture -->
+  <section id="get-key" class="py-20 border-t border-white/10">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Provision Your Cloud API Key</h2>
+      <p class="text-sm text-slate-400 mb-8">
+        Enter your developer email to receive your instant sandbox key and WebSocket endpoint credentials.
+      </p>
+
+      <form onsubmit="handleProvision(event)" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+        <input 
+          type="email" 
+          required 
+          placeholder="developer@yourcompany.com" 
+          class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-400"
+        />
+        <button 
+          type="submit" 
+          class="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold text-sm transition whitespace-nowrap"
+        >
+          Generate Key
+        </button>
+      </form>
+      <p id="provision-msg" class="text-xs text-emerald-400 font-mono mt-4 hidden">
+        ✓ Verification link dispatched! Check your inbox to activate your workspace.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-12 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="font-bold text-slate-300 hover:text-white transition">browserautomation.online</a>
+        <span>— Managed Cloud Browser Infrastructure</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="docs.html" class="hover:text-slate-300 transition">Documentation</a>
+        <a href="privacy.html" class="hover:text-slate-300 transition">Privacy &amp; Terms</a>
+        <a href="mailto:support@browserautomation.online" class="hover:text-slate-300 transition">support@browserautomation.online</a>
+        <span class="text-emerald-400/90">● All Systems Operational</span>
+        <span>© 2026 BrowserAutomation.online</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Script -->
+  <script>
+    function switchTab(lang) {
+      const langs = ['playwright', 'java', 'puppeteer'];
+      langs.forEach(l => {
+        document.getElementById('code-' + l).classList.add('hidden');
+        const tab = document.getElementById('tab-' + l);
+        tab.classList.remove('bg-brand-500', 'text-slate-950', 'font-semibold');
+        tab.classList.add('text-slate-400');
+      });
+
+      document.getElementById('code-' + lang).classList.remove('hidden');
+      const activeTab = document.getElementById('tab-' + lang);
+      activeTab.classList.remove('text-slate-400');
+      activeTab.classList.add('bg-brand-500', 'text-slate-950', 'font-semibold');
+    }
+
+    function handleProvision(e) {
+      e.preventDefault();
+      document.getElementById('provision-msg').classList.remove('hidden');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

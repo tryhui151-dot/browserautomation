@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — BrowserAutomation.online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          colors: { brand: { 400: '#38bdf8', 500: '#0ea5e9' } }
+        }
+      }
+    }
+  </script>
+  <style>body { background-color: #07090e; color: #f8fafc; }</style>
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#07090e]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-indigo-600 flex items-center justify-center font-mono font-bold text-sm text-white">&gt;_</div>
+          <span class="font-bold tracking-tight text-white">browserautomation<span class="text-brand-400">.online</span></span>
+        </a>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-white/10 text-slate-300">DOCS v2.4</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="privacy.html" class="hover:text-white">Privacy &amp; Terms</a>
+        <a href="index.html#get-key" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold px-3.5 py-1.5 rounded-lg text-xs">Get API Key</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-12 gap-10">
+    <!-- Sidebar Navigation -->
+    <aside class="md:col-span-3 space-y-6 text-sm">
+      <div>
+        <div class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-3">Getting Started</div>
+        <ul class="space-y-2 text-slate-300">
+          <li><a href="#authentication" class="hover:text-brand-400">Authentication</a></li>
+          <li><a href="#websocket-cdp" class="hover:text-brand-400">WebSocket Connection (CDP)</a></li>
+          <li><a href="#launch-flags" class="hover:text-brand-400">Stealth &amp; Proxy Flags</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-3">AI &amp; REST APIs</div>
+        <ul class="space-y-2 text-slate-300">
+          <li><a href="#ai-agents" class="hover:text-brand-400">AI Agent &amp; Claude MCP</a></li>
+          <li><a href="#rest-extract" class="hover:text-brand-400">POST /v1/extract</a></li>
+          <li><a href="#session-vault" class="hover:text-brand-400">Persistent Session Vault</a></li>
+          <li><a href="#rate-limits" class="hover:text-brand-400">Rate Limits &amp; Error Codes</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Documentation Content -->
+    <main class="md:col-span-9 space-y-14 max-w-3xl">
+      
+      <!-- Intro & Auth -->
+      <section id="authentication" class="space-y-4">
+        <h1 class="text-3xl font-bold text-white">API &amp; Runtime Documentation</h1>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          BrowserAutomation.online provides ephemeral, isolated Chromium and WebKit microVMs accessible via Chrome DevTools Protocol (WSS) and synchronous REST endpoints.
+        </p>
+        <div class="p-4 rounded-xl border border-white/10 bg-[#0c1017] font-mono text-xs space-y-2">
+          <div class="text-slate-400"># Base WebSocket Endpoint</div>
+          <div class="text-brand-400">wss://connect.browserautomation.online?apiKey=YOUR_API_KEY</div>
+          <div class="text-slate-400 pt-2"># Base REST Endpoint</div>
+          <div class="text-emerald-400">https://api.browserautomation.online/v1</div>
+        </div>
+      </section>
+
+      <!-- WebSocket CDP -->
+      <section id="websocket-cdp" class="space-y-4 pt-6 border-t border-white/10">
+        <h2 class="text-xl font-bold text-white">WebSocket Connection (Playwright / Puppeteer / Java)</h2>
+        <p class="text-slate-400 text-sm">
+          Pass query parameters directly in your WebSocket handshake URL to configure browser fingerprinting, residential proxy routing, and session persistence.
+        </p>
+
+        <div id="launch-flags" class="overflow-x-auto rounded-xl border border-white/10">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-white/5 text-slate-300 font-mono">
+              <tr>
+                <th class="p-3">Parameter</th>
+                <th class="p-3">Type</th>
+                <th class="p-3">Description</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10 text-slate-400">
+              <tr>
+                <td class="p-3 font-mono text-brand-400">stealth</td>
+                <td class="p-3 font-mono">boolean</td>
+                <td class="p-3">Enables kernel-level JA4 TLS spoofing, WebGL canvas noise, and navigator patching (Default: <code>true</code>).</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono text-brand-400">proxy</td>
+                <td class="p-3 font-mono">string</td>
+                <td class="p-3">ISO country code for residential proxy routing (e.g., <code>res_us</code>, <code>res_gb</code>, <code>res_de</code>, <code>res_in</code>).</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono text-brand-400">solveCaptcha</td>
+                <td class="p-3 font-mono">boolean</td>
+                <td class="p-3">Automatically intercepts and solves Cloudflare Turnstile, hCaptcha, and reCAPTCHA v2/v3 challenges.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono text-brand-400">sessionId</td>
+                <td class="p-3 font-mono">string</td>
+                <td class="p-3">Mounts encrypted cookies and LocalStorage from the Persistent Session Vault across runs.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono text-brand-400">timeout</td>
+                <td class="p-3 font-mono">integer</td>
+                <td class="p-3">Maximum session duration in milliseconds (30,000 to 1,800,000).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- AI Agents & Claude MCP -->
+      <section id="ai-agents" class="space-y-4 pt-6 border-t border-white/10">
+        <div class="inline-block text-xs font-mono px-2.5 py-0.5 rounded bg-brand-500/10 text-brand-400 border border-brand-500/30">LLM &amp; AGENT NATIVE</div>
+        <h2 class="text-xl font-bold text-white">AI Agent Runtime &amp; Claude MCP Integration</h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Our platform powers autonomous web agents using Anthropic Claude (Computer Use &amp; Sonnet/Haiku tool-calling), OpenAI, and LangGraph. You can attach our hosted Model Context Protocol (MCP) server directly to your agent workflow or extract structured JSON schemas from live DOM trees.
+        </p>
+        <pre class="p-5 rounded-xl border border-white/10 bg-[#0c1017] font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed"><code>// claude_desktop_config.json or Agent MCP Client
+{
+  "mcpServers": {
+    "browserautomation-cloud": {
+      "command": "npx",
+      "args": ["-y", "@browserautomation/mcp-server"],
+      "env": {
+        "BA_API_KEY": "ba_live_your_api_key_here",
+        "BA_STEALTH_MODE": "strict",
+        "BA_PROXY_REGION": "res_us"
+      }
+    }
+  }
+}</code></pre>
+      </section>
+
+      <!-- REST Extraction Endpoint -->
+      <section id="rest-extract" class="space-y-4 pt-6 border-t border-white/10">
+        <h2 class="text-xl font-bold text-white">Synchronous Structured Extraction (<code>POST /v1/extract</code>)</h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Render any JavaScript-heavy SPA in a stealth browser and extract clean Markdown or LLM-parsed JSON in a single HTTP call.
+        </p>
+        <pre class="p-5 rounded-xl border border-white/10 bg-[#0c1017] font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed"><code>curl -X POST https://api.browserautomation.online/v1/extract \
+  -H "Authorization: Bearer ba_live_98a7f6..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://example-ecommerce.com/product/492",
+    "waitForSelector": ".price-box",
+    "proxy": "res_us",
+    "outputFormat": "json",
+    "schema": {
+      "productName": "string",
+      "price": "number",
+      "inStock": "boolean"
+    }
+  }'</code></pre>
+      </section>
+
+      <!-- Rate Limits -->
+      <section id="rate-limits" class="space-y-4 pt-6 border-t border-white/10">
+        <h2 class="text-xl font-bold text-white">Rate Limits &amp; Status Codes</h2>
+        <p class="text-slate-400 text-sm">
+          Concurrency limits depend on your plan tier (5 concurrent browsers on Developer, 50 on Production, 500+ on Enterprise). Exceeding concurrency queues incoming WebSocket handshakes for up to 15 seconds before returning HTTP <code>429 Too Many Requests</code>.
+        </p>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

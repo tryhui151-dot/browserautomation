@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy, Terms &amp; Acceptable Use — BrowserAutomation.online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          colors: { brand: { 400: '#38bdf8', 500: '#0ea5e9' } }
+        }
+      }
+    }
+  </script>
+  <style>body { background-color: #07090e; color: #f8fafc; }</style>
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#07090e]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-indigo-600 flex items-center justify-center font-mono font-bold text-sm text-white">&gt;_</div>
+        <span class="font-bold tracking-tight text-white">browserautomation<span class="text-brand-400">.online</span></span>
+      </a>
+      <div class="flex items-center gap-6 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="docs.html" class="hover:text-white">Documentation</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16 space-y-12 text-sm text-slate-300 leading-relaxed">
+    <div class="border-b border-white/10 pb-8">
+      <div class="text-xs font-mono text-brand-400 mb-2">LEGAL &amp; COMPLIANCE</div>
+      <h1 class="text-3xl font-bold text-white mb-2">Privacy Policy, Terms of Service &amp; Acceptable Use</h1>
+      <p class="text-slate-400 text-xs">Last Updated: October 2026 | Effective Immediately</p>
+    </div>
+
+    <!-- 1. Overview -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold text-white">1. Scope &amp; Platform Overview</h2>
+      <p>
+        BrowserAutomation.online ("Platform", "we", "us") provides managed cloud headless browser infrastructure, WebSocket remote browser execution, and AI-assisted web automation APIs for software developers and enterprises. By accessing our website or using our APIs, you agree to the practices described in this policy.
+      </p>
+    </section>
+
+    <!-- 2. Data Collection & Ephemeral Isolation -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold text-white">2. Data Collection &amp; Ephemeral Browser Isolation</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-400">
+        <li><strong class="text-slate-200">Account &amp; Billing Data:</strong> We collect your developer email address, organization details, and billing metadata processed securely via PCI-DSS compliant payment processors.</li>
+        <li><strong class="text-slate-200">Ephemeral MicroVM Execution:</strong> Every browser session runs inside an isolated, single-tenant microVM. When a WebSocket or REST session closes, all memory, DOM cache, and disk state are cryptographically wiped unless you explicitly enable the <em>Persistent Session Vault</em>.</li>
+        <li><strong class="text-slate-200">Telemetry &amp; Session Replay:</strong> If debugging logs or video replays are enabled in your workspace, session artifacts are encrypted at rest (AES-256) and automatically purged based on your plan's retention window (24 hours to 30 days).</li>
+      </ul>
+    </section>
+
+    <!-- 3. AI Sub-Processors -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold text-white">3. AI Model Processing &amp; Zero-Training Guarantee</h2>
+      <p>
+        When using our AI Agent endpoints (such as <code>/v1/extract</code> or MCP agent workflows), DOM snapshots and extraction prompts are processed via enterprise API agreements with our infrastructure and LLM sub-processors (including Amazon Web Services, Google Cloud Platform, and Anthropic). Customer payloads are <strong>never</strong> used to train foundational models.
+      </p>
+    </section>
+
+    <!-- 4. Acceptable Use Policy (Critical for Verification) -->
+    <section class="space-y-3 p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
+      <h2 class="text-lg font-semibold text-white">4. Acceptable Use Policy (AUP) &amp; Anti-Abuse</h2>
+      <p>
+        BrowserAutomation.online is built strictly for legitimate quality assurance, enterprise workflow automation, authorized data aggregation, and AI agent execution. Users are strictly prohibited from using the Platform for:
+      </p>
+      <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
+        <li>Credential stuffing, brute-force authentication attacks, or unauthorized intrusion into private computer systems.</li>
+        <li>Distributed Denial of Service (DDoS) attacks or intentional degradation of third-party network infrastructure.</li>
+        <li>Harvesting sensitive Personally Identifiable Information (PII), financial records, or protected health data in violation of GDPR, CCPA, or applicable laws.</li>
+        <li>Automated purchasing bots for unlawful scalping, ad-fraud click farms, or distributing malware.</li>
+      </ul>
+      <p class="text-xs text-slate-400 pt-2">
+        Violation of this Acceptable Use Policy results in immediate API key revocation and account termination.
+      </p>
+    </section>
+
+    <!-- 5. Contact -->
+    <section class="space-y-3 border-t border-white/10 pt-8">
+      <h2 class="text-lg font-semibold text-white">5. Security, GDPR &amp; Abuse Reporting</h2>
+      <p class="text-slate-400">
+        For data deletion requests, GDPR/DPDP compliance inquiries, or to report API abuse, contact our engineering and compliance team:
+      </p>
+      <div class="font-mono text-xs text-brand-400 space-y-1">
+        <div>Compliance &amp; Privacy: <a href="mailto:privacy@browserautomation.online" class="underline">privacy@browserautomation.online</a></div>
+        <div>Support &amp; Engineering: <a href="mailto:support@browserautomation.online" class="underline">support@browserautomation.online</a></div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
